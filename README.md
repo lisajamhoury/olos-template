@@ -58,6 +58,8 @@ For building and deploying the base project, run this command.
 
 ```bash
 npm start
+
+# runs the project at https://localhost:1234
 ```
 
 ## Creating a Peer Connection
