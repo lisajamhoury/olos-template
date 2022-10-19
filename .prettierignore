@@ -1,0 +1,11 @@
+# Ignore
+.DS_Store
+.parcel-cache/
+node_modules/
+dist/
+pose/
+shared/
+src/media/*.json
+**/*.glsl
+**/*.frag
+**/*.vert

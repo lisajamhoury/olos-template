@@ -1,0 +1,179 @@
+{
+  "sheetsById": {
+    "Scene_0": {
+      "staticOverrides": {
+        "byObject": {
+          "Water": {
+            "visible": true,
+            "waterLevel": -1,
+            "distortionScale": 0
+          }
+        }
+      },
+      "sequence": {
+        "subUnitsPerUnit": 30,
+        "length": 60,
+        "type": "PositionalSequence",
+        "tracksByObject": {
+          "Water": {
+            "trackData": {
+              "pyC_FTYOw2": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Water:[\"waterLevel\"]",
+                "keyframes": [
+                  {
+                    "id": "4uoTRNPM3w",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": -5
+                  },
+                  {
+                    "id": "t_AUTcZm5U",
+                    "position": 22,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": -0.5
+                  },
+                  {
+                    "id": "utS0ygOw-A",
+                    "position": 44,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": -1
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"waterLevel\"]": "pyC_FTYOw2"
+            }
+          }
+        }
+      }
+    },
+    "Scene_1": {
+      "staticOverrides": {
+        "byObject": {
+          "DancerOne": {
+            "basePosition": {
+              "x": 6,
+              "y": 2,
+              "z": 0
+            }
+          },
+          "Marching Cubes": {
+            "boxSize": 9.063291139240517
+          },
+          "DancerTwo": {
+            "basePosition": {
+              "x": 0
+            }
+          }
+        }
+      },
+      "sequence": {
+        "subUnitsPerUnit": 30,
+        "length": 60,
+        "type": "PositionalSequence",
+        "tracksByObject": {
+          "DancerOne": {
+            "trackData": {
+              "rHuBSZOa4S": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "DancerOne:[\"basePosition\",\"x\"]",
+                "keyframes": [
+                  {
+                    "id": "P7pmLyK2Sp",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 6
+                  },
+                  {
+                    "id": "vvF8jiVi9j",
+                    "position": 60,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"basePosition\",\"x\"]": "rHuBSZOa4S"
+            }
+          },
+          "DancerTwo": {
+            "trackData": {
+              "6tyLt0VduH": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "DancerTwo:[\"basePosition\",\"x\"]",
+                "keyframes": [
+                  {
+                    "id": "onLF8DVegI",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": -6
+                  },
+                  {
+                    "id": "tw2677Crm4",
+                    "position": 60,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"basePosition\",\"x\"]": "6tyLt0VduH"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": [
+    "0N8cFf9_7mTBFI9j",
+    "OIW13iWJpAOJbk_-",
+    "XvLRvc46dwxh5tNL"
+  ]
+}
