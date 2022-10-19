@@ -12,14 +12,6 @@ class ToneMixer {
     // boolean for user action for turning on
     this.isAudioOn = false;
 
-    // transport variables
-    // the transport position is returned as
-    // the string bars:beats:sixteenths
-    this.currentTransportPosition = null;
-    this.currentBar = -1;
-    this.currentBeats = -1;
-    this.currentSixteenths = -1;
-
     // scene variables
     this.currentScene = -1;
 
@@ -103,14 +95,6 @@ class ToneMixer {
     }
   }
 
-  updateToneTransportData() {
-    this.currentTransportPosition =
-      Tone.Transport.position.split(':');
-    this.currentBar = this.currentTransportPosition[0];
-    this.currentBeats = this.currentTransportPosition[1];
-    this.currentSixteenths = this.currentTransportPosition[2];
-  }
-
   updateReverbDecayTime(newReverbTime, rampTime) {
     this.reverb.decay.rampTo(newReverbTime, rampTime);
   }
@@ -132,8 +116,6 @@ class ToneMixer {
   }
 
   animate(player1, player2) {
-    this.updateToneTransportData();
-
     if (player1.pose[0].hasOwnProperty('keypoints3D')) {
       const keypoints = player1.pose[0].keypoints3D;
       if (keypoints[0].score > 0.8) {
