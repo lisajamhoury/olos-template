@@ -4,6 +4,38 @@
 
 This is a project by [Lisa Jamhoury](https://lisajamhoury.com/) and [Aarón Montoya-Moraga](https://montoyamoraga.io/), funded in 2022 by the Next Web grant from NEW INC and Meta Open Arts.
 
+## Explanation
+
+This project is a template for creating an immersive three.js website that features live video feeds, pose detection, and interactive sound from two people.
+
+On startup, it displays and livestreams the webcam and 3D pose data of both players. There is an option to turn on background removal (using body segmentation) as well. Using simple keypresses, you can run interactive audio that is impacted by the 3D pose data.
+
+By default this project runs on recorded vidoes and recorded data so you can see what it looks like. Note that the background removal doesn't work when using recorded data. See the section on Creating a Peer Connection for instructions on how to work with live webcam and pose detection.
+
+## Why Use This
+
+We created this project from our project Olos, a telematic web performance between Chile and the US. For our project, we built everything from scratch. We thought it might be helpful to other people interested in building telematic web performances to have some building blocks to get started.
+
+This template includes the code:
+
+- to create a peer-to-peer connection with one other person
+- to run pose detection and body segmentation on both people
+- to stream the video and pose
+- to create interactive audio
+- to integrate all of this into a basic three.js environment.
+
+It does not include:
+
+- a signaling server (more on that below)
+- creative three.js or audio development.
+
+## Technical details
+
+- Pose detection is done with [TensorFlow.js Blazepose](https://blog.tensorflow.org/2021/05/high-fidelity-pose-tracking-with-mediapipe-blazepose-and-tfjs.html).
+- Peer to peer connection is done with [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) and [simple-peer-server](https://github.com/lisajamhoury/simple-peer-server).
+- Sound is done with [Tone.js](https://tonejs.github.io/).
+- 3D environment is done with [three.js](https://threejs.org/).
+
 ## Installation
 
 Clone this repository and then install the dependencies with this command.
@@ -26,20 +58,38 @@ For building and deploying the base project, on the console run this command.
 npm start
 ```
 
-## Explanation
+## Creating a Peer Connection
 
-This base project is creating a website, establishing a peer-to-peer connection, and opening your webcam.
+This project uses [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) to create a peer connection via [simple-peer](https://github.com/feross/simple-peer).
 
-It is detecting the pose in your webcam feedand the other peer's webcam feed, and with that information, is drawing on the screen a pose representation, and affecting audio parameters.
+It **does not** include a signaling server, which is needed to create the peer connections! In order to run the project live, you will need to create your own signaling server using [simple-peer-server](https://github.com/lisajamhoury/simple-peer-server).
 
-## Technical details
+Once you have created our signaling server, you create live peer connections between two browsers/users as follows:
 
-- Pose detection is done with [TensorFlow.js Blazepose](https://blog.tensorflow.org/2021/05/high-fidelity-pose-tracking-with-mediapipe-blazepose-and-tfjs.html).
-- Peer to peer connection is done with [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) and [simple-peer-server](https://github.com/lisajamhoury/simple-peer-server).
-- Sound is done with [Tone.js](https://tonejs.github.io/).
-- 3D environment is done with [three.js](https://threejs.org/).
+```javascript
+// in constants.js update the following variables as follows
+
+const LIVE = true;
+
+const PEERSERVERURL = 'http://localhost:8081'; // add your url here'
+```
+
+**Protip!** You can create a public server from your local host using [ngrok](https://ngrok.com/). Once you've downloaded the software, you just run
+
+```bash
+
+ngrok http 8081 # your port here
+
+```
+
+Learn more in the [ngrok documentation](https://ngrok.com/docs/secure-tunnels#http-tunnels-local-https)
+
+## Known Issues
+
+The demo video and pose data timing are off! Sorry about that. We're working on a fix for it, but for now, it's the best we can do.
 
 ## Credits
 
 - Created by Lisa Jamhoury and Aarón Montoya-Moraga
-- Choreography and performance by Hanna Satterlee and Soledad Rojas
+- Demo videos feature Hanna Satterlee and Soledad Rojas
+- Scene / Three.js development Front End Development based on work by Aidan Nelson
