@@ -145,7 +145,6 @@ class Player {
     }
 
     if (ADDSEGMENTATION && this.local) {
-      console.log('im working');
       this.drawSegmentationMask(this.pose[0].segmentation);
     }
 
