@@ -8,21 +8,21 @@ This is a project by [Lisa Jamhoury](https://lisajamhoury.com/) and [Aarón Mont
 
 This project is a template for creating an immersive three.js website that features live video feeds, pose detection, and interactive sound from two people.
 
-On startup, it displays and livestreams the webcam and 3D pose data of both players. There is an option to turn on background removal (using body segmentation) as well. Using simple keypresses, you can run interactive audio that is impacted by the 3D pose data.
+On startup, it displays and livestreams the webcam feed and 3D pose data of both players. There is an option to turn on background removal (using body segmentation) as well. Using keypresses, you can also add interactive audio that is influenced by the 3D pose data.
 
-By default this project runs on recorded vidoes and recorded data so you can see what it looks like. Note that the background removal doesn't work when using recorded data. See the section on Creating a Peer Connection for instructions on how to work with live webcam and pose detection.
+By default this project runs on recorded videos and recorded data so you can see what it looks like. Please note that the background removal doesn't work when using recorded data. See the section on Creating a Peer Connection for instructions on how to work with live webcam and pose detection.
 
 ## Why Use This
 
-We created this project from our project Olos, a telematic web performance between Chile and the US. For our project, we built everything from scratch. We thought it might be helpful to other people interested in building telematic web performances to have some building blocks to get started.
+We created this template from our project Olos, a telematic web performance between Chile and the US. For our project, we built everything from scratch. We thought it might be helpful to a wider community, to open source some of our building blocks to get started in building telematic web performance.
 
-This template includes the code:
+This template includes the code to:
 
-- to create a peer-to-peer connection with one other person
-- to run pose detection and body segmentation on both people
-- to stream the video and pose
-- to create interactive audio
-- to integrate all of this into a basic three.js environment.
+- create a peer-to-peer connection with one other person
+- run pose detection and body segmentation on both people
+- stream the video and pose
+- create interactive audio
+- integrate all of this into a basic three.js environment.
 
 It does not include:
 
@@ -58,7 +58,7 @@ For building and deploying the base project, on the console run this command.
 npm start
 ```
 
-## Creating a Peer Connection
+## Creating a peer Connection
 
 This project uses [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) to create a peer connection via [simple-peer](https://github.com/feross/simple-peer).
 
@@ -74,12 +74,10 @@ const LIVE = true;
 const PEERSERVERURL = 'http://localhost:8081'; // add your url here'
 ```
 
-**Protip!** You can create a public server from your local host using [ngrok](https://ngrok.com/). Once you've downloaded the software, you just run
+**Pro tip!** You can create a public server from your local host using [ngrok](https://ngrok.com/). Once you've downloaded the software, you just run
 
 ```bash
-
 ngrok http 8081 # your port here
-
 ```
 
 Learn more in the [ngrok documentation](https://ngrok.com/docs/secure-tunnels#http-tunnels-local-https)
