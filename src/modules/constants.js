@@ -1,5 +1,4 @@
 // Debugging
-const SHOWCONTROLS = true;
 const DEBUGPOSE = false;
 const DEBUGVIDEO = true;
 const ADDSEGMENTATION = false;
@@ -7,9 +6,7 @@ const LIVE = true;
 const SENDDATA = LIVE;
 
 // Constants
-const SCENENO = 0; // 0, 1, or 2;
 const CONFTHRESHOLD = 0.8;
-const NUMPLAYERS = 2;
 const PEERSERVERURL = 'https://simplepeerserver.net/';
 
 const VIDEOH = 480;
@@ -35,7 +32,6 @@ import * as POSES1DANCER1 from '../media/s1_soledad.json';
 const VIDEOPOSEURLS = [[POSES1DANCER0, POSES1DANCER1]];
 
 export {
-  SHOWCONTROLS,
   CONFTHRESHOLD,
   CANVASH,
   CANVASW,
@@ -43,11 +39,9 @@ export {
   DEBUGVIDEO,
   DIVISOR,
   LIVE,
-  NUMPLAYERS,
   PEERSERVERURL,
   ADDSEGMENTATION,
   SENDDATA,
-  SCENENO,
   VIDEOH,
   VIDEOW,
   VIDEOURLS,

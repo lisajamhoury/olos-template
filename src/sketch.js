@@ -8,11 +8,9 @@ import * as THREE from 'three';
 import { ToneMixer } from './modules/audio/tonemixer.js';
 
 import {
-  SCENENO,
   VIDEOURLS,
   VIDEOPOSEURLS,
   LIVE,
-  NUMPLAYERS,
 } from './modules/constants.js';
 
 let poseDetector;
@@ -20,9 +18,6 @@ let peerConnection;
 let myPlayer;
 let remotePlayer;
 let scene;
-
-// let demoPose1;
-// let demoPose2;
 
 // audio
 let toneMixer;
@@ -33,10 +28,7 @@ function init() {
   myPlayer = new Player(true);
   remotePlayer = new Player(false);
   scene = new Scene();
-
-  // audio
   toneMixer = new ToneMixer(peerConnection);
-  // toneMixer.setBPM(60, 1);
 
   if (LIVE) {
     poseDetector
@@ -67,10 +59,10 @@ function init() {
     poseDetector
       .init()
       .then((results) => {
-        myPlayer.video.getDemoVideo(VIDEOURLS[SCENENO][0]);
-        myPlayer.setDemoPose(VIDEOPOSEURLS[SCENENO][0]);
-        remotePlayer.video.getDemoVideo(VIDEOURLS[SCENENO][1]);
-        remotePlayer.setDemoPose(VIDEOPOSEURLS[SCENENO][1]);
+        myPlayer.video.getDemoVideo(VIDEOURLS[0][0]);
+        myPlayer.setDemoPose(VIDEOPOSEURLS[0][0]);
+        remotePlayer.video.getDemoVideo(VIDEOURLS[0][1]);
+        remotePlayer.setDemoPose(VIDEOPOSEURLS[0][1]);
 
         scene.addPlayerVideo(
           0,
