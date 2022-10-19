@@ -3,7 +3,6 @@ import { PeerConnection } from './modules/core/peerconnection.js';
 import { Player } from './modules/player/player.js';
 import { Scene } from './modules/scene/scene.js';
 import * as THREE from 'three';
-import projectState from './media/OlosProject.theatre-project-state.json';
 
 // audio
 import { ToneMixer } from './modules/audio/tonemixer.js';
