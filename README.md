@@ -29,7 +29,7 @@ It does not include:
 - a signaling server (more on that below)
 - creative three.js or audio development.
 
-## Technical details
+## Technical Details
 
 - Pose detection is done with [TensorFlow.js Blazepose](https://blog.tensorflow.org/2021/05/high-fidelity-pose-tracking-with-mediapipe-blazepose-and-tfjs.html).
 - Peer to peer connection is done with [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) and [simple-peer-server](https://github.com/lisajamhoury/simple-peer-server).
@@ -58,13 +58,13 @@ For building and deploying the base project, on the console run this command.
 npm start
 ```
 
-## Creating a peer Connection
+## Creating a Peer Connection
 
 This project uses [simple-peer-wrapper](https://github.com/lisajamhoury/simple-peer-wrapper) to create a peer connection via [simple-peer](https://github.com/feross/simple-peer).
 
 It **does not** include a signaling server, which is needed to create the peer connections! In order to run the project live, you will need to create your own signaling server using [simple-peer-server](https://github.com/lisajamhoury/simple-peer-server).
 
-Once you have created our signaling server, you create live peer connections between two browsers/users as follows:
+Once you have created a signaling server, you create live peer connections between two browsers/users as follows:
 
 ```javascript
 // in constants.js update the following variables as follows
