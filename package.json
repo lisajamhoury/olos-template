@@ -9,33 +9,19 @@
   "license": "",
   "dependencies": {
     "@mediapipe/pose": "~0.4.0",
-    "@mediapipe/selfie_segmentation": "^0.1.1632777926",
     "@tensorflow-models/body-segmentation": "^1.0.1",
     "@tensorflow-models/pose-detection": "^2.0.0",
     "@tensorflow/tfjs-backend-wasm": "^3.8.0",
     "@tensorflow/tfjs-backend-webgl": "^3.8.0",
     "@tensorflow/tfjs-converter": "^3.8.0",
     "@tensorflow/tfjs-core": "^3.8.0",
-    "@theatre/core": "^0.5.0",
-    "@theatre/studio": "^0.5.0",
-    "lil-gui": "^0.17.0",
-    "mout": "^1.2.3",
-    "postprocessing": "^6.28.7",
     "simple-peer-wrapper": "^0.0.5",
     "three": "^0.142.0",
-    "three.terrain.js": "^2.0.0",
     "tone": "^14.7.77"
   },
   "devDependencies": {
     "@parcel/transformer-glsl": "^2.6.2",
-    "assert": "^2.0.0",
-    "constants-browserify": "^1.0.0",
-    "events": "^3.3.0",
-    "os-browserify": "^0.3.0",
     "parcel": "^2.6.2",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "util": "^0.12.4"
+    "process": "^0.11.10"
   }
 }

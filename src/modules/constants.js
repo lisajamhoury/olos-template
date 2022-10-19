@@ -3,7 +3,7 @@ const SHOWCONTROLS = true;
 const DEBUGPOSE = false;
 const DEBUGVIDEO = true;
 const ADDSEGMENTATION = false;
-const LIVE = false;
+const LIVE = true;
 const SENDDATA = LIVE;
 
 // Constants
