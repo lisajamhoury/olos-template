@@ -35,7 +35,7 @@ class ToneKick extends ToneBaseInstrument {
     this.currentEvent = null;
   }
 
-  goToScene(newScene) {
+  init() {
     this.updateGain(this.gain);
 
     // cancel all next scheduled repeats

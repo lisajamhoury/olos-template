@@ -18,7 +18,6 @@ class ToneBaseInstrument {
 
     this.sequence = null;
 
-    // approach with ToneEvent
     this.events = null;
 
     this.transitionTime = '4n';

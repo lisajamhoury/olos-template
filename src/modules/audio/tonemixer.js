@@ -12,9 +12,6 @@ class ToneMixer {
     // boolean for user action for turning on
     this.isAudioOn = false;
 
-    // scene variables
-    this.currentScene = -1;
-
     // instances of the instruments
     this.hihat = new ToneHihat();
     this.kick = new ToneKick();
@@ -78,42 +75,24 @@ class ToneMixer {
         Tone.Transport.state === 'paused' ||
         Tone.Transport.state === 'stopped'
       ) {
-        this.goToScene(0);
+        this.init();
       } else if (Tone.Transport.state === 'started') {
         Tone.Transport.pause();
       }
     }
   }
 
-  // async handleSceneAudio(key) {
-  //   if (['0'].includes(key)) {
-  //     // go to the scene only if it's different than the previous one
-  //     if (this.currentScene != key) {
-  //       this.currentScene = key;
-  //       this.goToScene(key);
-  //     }
-  //   }
-  // }
-
   updateReverbDecayTime(newReverbTime, rampTime) {
     this.reverb.decay.rampTo(newReverbTime, rampTime);
   }
 
-  goToScene(newScene) {
-    this.currentScene = newScene;
-    // if (scenesBars[newScene] >= 0) {
-    //   Tone.Transport.position = scenesBars[newScene];
-    //   Tone.Transport.start();
-    // } else {
-    //   Tone.Transport.pause();
-    // }
-
+  init() {
     Tone.Transport.position = 0;
     Tone.Transport.start();
 
     this.instruments.forEach((instrument) => {
       if (instrument != null) {
-        instrument.goToScene(newScene);
+        instrument.init();
       }
     });
   }

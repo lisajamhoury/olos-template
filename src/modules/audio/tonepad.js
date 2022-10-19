@@ -50,7 +50,7 @@ class TonePad extends ToneBaseInstrument {
     }
   }
 
-  goToScene(newScene) {
+  init() {
     this.updateGain(this.gain);
 
     if (this.currentEvent != null) {

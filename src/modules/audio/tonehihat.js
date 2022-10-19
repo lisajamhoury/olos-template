@@ -38,7 +38,7 @@ class ToneHihat extends ToneBaseInstrument {
     this.baseChord = null;
   }
 
-  goToScene(newScene) {
+  init() {
     this.updateGain(this.gain);
 
     // cancel all next scheduled repeats

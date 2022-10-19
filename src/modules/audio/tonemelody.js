@@ -53,7 +53,7 @@ class ToneMelody extends ToneBaseInstrument {
     this.baseChord = [...this.baseChord1, ...this.baseChord2];
   }
 
-  goToScene(newScene) {
+  init() {
     this.updateGain(this.gain);
 
     // cancel all next scheduled repeats
