@@ -144,8 +144,10 @@ class Player {
       this.ctx.fillRect(0, 0, CANVASW, CANVASH);
     }
 
-    if (ADDSEGMENTATION && this.local)
+    if (ADDSEGMENTATION && this.local) {
+      console.log('im working');
       this.drawSegmentationMask(this.pose[0].segmentation);
+    }
 
     if (DEBUGPOSE) this.drawResults(this.pose);
   }

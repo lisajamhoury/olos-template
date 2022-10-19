@@ -96,14 +96,19 @@ async function runPoseDetection() {
       remotePlayer.runDemoPose();
     }
   }
+
+  if (myPlayer.pose !== null && remotePlayer.pose !== null) {
+    myPlayer.drawCanvas();
+    remotePlayer.drawCanvas();
+    scene.updatePoses(myPlayer, remotePlayer);
+  } else {
+    // console.log('not drawing pose');
+  }
   requestAnimationFrame(runPoseDetection);
 }
 
 function animate() {
   if (myPlayer.pose !== null && remotePlayer.pose !== null) {
-    myPlayer.drawCanvas();
-    remotePlayer.drawCanvas();
-    scene.updatePoses(myPlayer, remotePlayer);
     scene.animate();
     toneMixer.animate(myPlayer, remotePlayer);
   } else {

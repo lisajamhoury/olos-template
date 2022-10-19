@@ -1,7 +1,7 @@
 // Debugging
 const DEBUGPOSE = false;
 const DEBUGVIDEO = true;
-const ADDSEGMENTATION = false;
+const ADDSEGMENTATION = true;
 const LIVE = true;
 const SENDDATA = LIVE;
 
