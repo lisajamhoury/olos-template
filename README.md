@@ -96,8 +96,8 @@ The source code lives on the [src/](./src/) folder, which includes the following
 - [src/modules](./src/modules/): JavaScript files with modules used for building the project, including:
   - [src/modules/audio/](./src/modules/audio/): JavaScript files built with Tone.js. It includes a base class for building instruments (percussion, melody synth, pad synth), a notes generator for building melodies and chords, a parameters file for controlling the instruments, and a mixer for instancing the instruments.
   - [src/modules/core](./src/modules/core): JavaScript files for the core functionalities of the project, peer connection and pose detection, and an utilities file.
-  - [src/modules/player](./src/modules/player): JavaScript files for handling the webcam feeds.
-  - [src/modules/scene/](./src/modules/scene/): JavaScript files built with three.js for the graphics.
+  - [src/modules/player](./src/modules/player): JavaScript files for handling the webcam feeds, pose detection, and player canvases.
+  - [src/modules/scene/](./src/modules/scene/): JavaScript files built with three.js for the creating the scene and pose representations.
   - [src/modules/constants.js](./src/modules/constants.js): JavaScript file with constants for development and live performance, and setup of the audio and visuals.
 
 ## Known Issues
