@@ -1,6 +1,6 @@
 import * as Tone from 'tone';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
-import { melodyVolumes, melodyChances } from './toneparams.js';
+import { melodyGain, melodyChance } from './toneparams.js';
 import { ToneNotesGenerator } from './tonenotesgenerator.js';
 
 class ToneMelody extends ToneBaseInstrument {
@@ -18,8 +18,8 @@ class ToneMelody extends ToneBaseInstrument {
       },
     });
 
-    this.volumes = melodyVolumes;
-    this.chances = melodyChances;
+    this.gain = melodyGain;
+    this.chance = melodyChance;
     this.generator = new ToneNotesGenerator();
 
     // update filter frequency cutoff
@@ -54,7 +54,7 @@ class ToneMelody extends ToneBaseInstrument {
   }
 
   goToScene(newScene) {
-    this.updateVolume(this.volumes[newScene]);
+    this.updateGain(this.gain);
 
     // cancel all next scheduled repeats
     if (this.currentEvent != null) {
@@ -104,7 +104,7 @@ class ToneMelody extends ToneBaseInstrument {
       }
     }, this.baseChord);
 
-    // this.currentEvent.probability = this.chances[newScene];
+    this.currentEvent.probability = this.chance;
     this.currentEvent.playbackRate = 1;
     this.currentEvent.loop = true;
     this.currentEvent.loopEnd = 0.5 * Tone.Time('1m').toSeconds();

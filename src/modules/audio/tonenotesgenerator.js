@@ -1,5 +1,3 @@
-// import * as Tone from 'tone';
-
 class ToneNotesGenerator {
   constructor() {
     this.scaleMajor = [0, 2, 4, 5, 7, 9, 11];

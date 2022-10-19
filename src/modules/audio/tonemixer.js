@@ -4,7 +4,7 @@ import { ToneHihat } from './tonehihat.js';
 import { ToneKick } from './tonekick.js';
 import { TonePad } from './tonepad.js';
 import { ToneMelody } from './tonemelody.js';
-import { globalBPM, scenesBars } from './toneparams.js';
+import { globalBPM } from './toneparams.js';
 
 class ToneMixer {
   constructor(peerConnection) {
@@ -39,7 +39,7 @@ class ToneMixer {
       // x for audio start/stop
       this.handleOpenAudio(event.key);
       // number 1-3 for scene 1-3, 0 for beginning, 4 for end
-      this.handleSceneAudio(event.key);
+      // this.handleSceneAudio(event.key);
       this.sendAudioControl(event.key);
     });
 
@@ -64,9 +64,9 @@ class ToneMixer {
     if (key === 'x') {
       this.handleOpenAudio(key);
     }
-    if (['0', '1', '2', '3', '4'].includes(key)) {
-      this.handleSceneAudio(key);
-    }
+    // if (['0', '1', '2', '3', '4'].includes(key)) {
+    //   this.handleSceneAudio(key);
+    // }
   }
 
   async handleOpenAudio(key) {
@@ -85,15 +85,15 @@ class ToneMixer {
     }
   }
 
-  async handleSceneAudio(key) {
-    if (['0', '1', '2', '3', '4'].includes(key)) {
-      // go to the scene only if it's different than the previous one
-      if (this.currentScene != key) {
-        this.currentScene = key;
-        this.goToScene(key);
-      }
-    }
-  }
+  // async handleSceneAudio(key) {
+  //   if (['0'].includes(key)) {
+  //     // go to the scene only if it's different than the previous one
+  //     if (this.currentScene != key) {
+  //       this.currentScene = key;
+  //       this.goToScene(key);
+  //     }
+  //   }
+  // }
 
   updateReverbDecayTime(newReverbTime, rampTime) {
     this.reverb.decay.rampTo(newReverbTime, rampTime);
@@ -101,12 +101,15 @@ class ToneMixer {
 
   goToScene(newScene) {
     this.currentScene = newScene;
-    if (scenesBars[newScene] >= 0) {
-      Tone.Transport.position = scenesBars[newScene];
-      Tone.Transport.start();
-    } else {
-      Tone.Transport.pause();
-    }
+    // if (scenesBars[newScene] >= 0) {
+    //   Tone.Transport.position = scenesBars[newScene];
+    //   Tone.Transport.start();
+    // } else {
+    //   Tone.Transport.pause();
+    // }
+
+    Tone.Transport.position = 0;
+    Tone.Transport.start();
 
     this.instruments.forEach((instrument) => {
       if (instrument != null) {
@@ -149,14 +152,12 @@ class ToneMixer {
       let nextDelayTime =
         0.5 * this.distancesNoseLeftElbow[0] +
         this.distancesNoseLeftElbow[1];
-
       this.pad.updateDelayFeedback(nextDelayTime);
     }
 
     if (Tone.Transport.position.split(':')[0] > 8) {
       let nextDelayTime =
         1.0 * this.distancesElbows[0] + this.distancesElbows[1];
-      console.log('melody: ' + nextDelayTime);
       this.melody.updateDelayTime(nextDelayTime);
       this.melody.updateDelayFeedback(nextDelayTime);
     }

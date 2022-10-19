@@ -14,7 +14,7 @@ class ToneBaseInstrument {
 
     this.baseSound = null;
 
-    this.volumes = [];
+    this.gain = null;
 
     this.sequence = null;
 
@@ -23,10 +23,10 @@ class ToneBaseInstrument {
 
     this.transitionTime = '4n';
 
-    this.chances = null;
+    this.chance = null;
   }
 
-  updateVolume(newVolume) {
+  updateGain(newVolume) {
     if (typeof newVolume === 'number') {
       // ramp to the value in 1 measure
       this.volume.volume.rampTo(newVolume, this.transitionTime);
