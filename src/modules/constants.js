@@ -1,13 +1,13 @@
 // Debugging
 const DEBUGPOSE = false;
 const DEBUGVIDEO = true;
-const ADDSEGMENTATION = true;
-const LIVE = true;
+const ADDSEGMENTATION = false;
+const LIVE = false;
 const SENDDATA = LIVE;
 
 // Constants
 const CONFTHRESHOLD = 0.8;
-const PEERSERVERURL = 'https://simplepeerserver.net/';
+// const PEERSERVERURL = ''; // needed to create a live peer connection. see readme
 
 const VIDEOH = 480;
 const VIDEOW = 640;
