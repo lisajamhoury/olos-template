@@ -57,7 +57,6 @@ class Player {
         ) {
           this.posIndex++;
         } else {
-          console.log('resetting recorded pose');
           this.posIndex = 1;
         }
       }
@@ -105,6 +104,7 @@ class Player {
       false,
       0.5,
     );
+
     await bodySegmentation.drawMask(
       this.canvas,
       this.video.video,
@@ -112,11 +112,6 @@ class Player {
       1.0,
       0.0,
     );
-
-    // poses[0].segmentation.mask.toImageData().then((results) => {
-    //   let imageData = new ImageData(results.data, VIDEOW, VIDEOH);
-    //   this.ctx.putImageData(imageData, 0, 0);
-    // });
   }
 
   normalizePose(pose) {

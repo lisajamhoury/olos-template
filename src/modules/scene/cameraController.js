@@ -4,7 +4,7 @@ import { TransformControls } from 'three/examples/jsm/controls/TransformControls
 const ARC_SEGMENTS = 200;
 
 export class CameraController {
-  constructor(scene, camera, renderer, orbitControls, gui) {
+  constructor(scene, camera, renderer, orbitControls) {
     this.scene = scene;
     this.camera = camera;
 
@@ -55,11 +55,6 @@ export class CameraController {
       export: () => this.exportSpline(),
       import: () => this.importSpline(),
     };
-    const guiFolder = gui.addFolder('CameraController');
-    guiFolder.add(obj, 'addPoint');
-    guiFolder.add(obj, 'removePoint');
-    guiFolder.add(obj, 'export');
-    guiFolder.add(obj, 'import');
 
     this.transformControl.addEventListener('objectChange', () => {
       this.updateSplineOutline();

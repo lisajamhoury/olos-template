@@ -47,16 +47,17 @@ function init() {
           peerConnection.init(true, myPlayer.canvasStream);
           peerConnection.connection.on('data', gotDataFromPeer);
           peerConnection.connection.on('stream', gotPartnerStream);
-          scene.addDancerVideo(
+          scene.addPlayerVideo(
             0,
             myPlayer.canvas,
             new THREE.Vector3(-5, 1, 0),
           );
-          scene.addDancerVideo(
+          scene.addPlayerVideo(
             1,
             remotePlayer.canvas,
             new THREE.Vector3(5, 1, 0),
           );
+          runPoseDetection();
           animate();
         });
       })
@@ -70,25 +71,26 @@ function init() {
         myPlayer.video.getDemoVideo(VIDEOURLS[SCENENO][0]);
         myPlayer.setDemoPose(VIDEOPOSEURLS[SCENENO][0]);
         remotePlayer.video.getDemoVideo(VIDEOURLS[SCENENO][1]);
-        remotePlayer.setDemoPose(VIDEOPOSEURLS[SCENENO][0]);
+        remotePlayer.setDemoPose(VIDEOPOSEURLS[SCENENO][1]);
 
-        scene.addDancerVideo(
+        scene.addPlayerVideo(
           0,
           myPlayer.canvas,
           new THREE.Vector3(-5, 1, 0),
         );
-        scene.addDancerVideo(
+        scene.addPlayerVideo(
           1,
           remotePlayer.canvas,
           new THREE.Vector3(5, 1, 0),
         );
+        runPoseDetection();
         animate();
       })
       .catch((err) => console.error(err));
   }
 }
 
-async function animate() {
+async function runPoseDetection() {
   if (LIVE) {
     if (myPlayer.video.videoLoaded) {
       await myPlayer.getPose(poseDetector, peerConnection);
@@ -103,11 +105,15 @@ async function animate() {
       remotePlayer.runDemoPose();
     }
   }
+  requestAnimationFrame(runPoseDetection);
+}
 
+function animate() {
   if (myPlayer.pose !== null && remotePlayer.pose !== null) {
     myPlayer.drawCanvas();
     remotePlayer.drawCanvas();
-    scene.animate(myPlayer, remotePlayer);
+    scene.updatePoses(myPlayer, remotePlayer);
+    scene.animate();
     toneMixer.animate(myPlayer, remotePlayer);
   } else {
     // console.log('not drawing pose');
@@ -132,29 +138,5 @@ function gotDataFromPeer(data) {
 function gotPartnerStream(stream) {
   remotePlayer.video.setVideoStream(stream);
 }
-
-// // TO DO: Move into utils or other module
-// async function getJsonData(url) {
-//   const response = await fetch(url);
-//   return response.json(); // parses JSON response into native JavaScript objects
-// }
-
-// async function preloadJson() {
-//   getJsonData(VIDEOPOSEURLS[SCENENO][0])
-//     .then((results) => {
-//       demoPose1 = results;
-//       getJsonData(VIDEOPOSEURLS[SCENENO][1]).then((results) => {
-//         demoPose2 = results;
-//         init();
-//       });
-//     })
-//     .catch((error) => console.log(error));
-// }
-
-// if (!LIVE) {
-//   preloadJson();
-// } else {
-//   init();
-// }
 
 init();
