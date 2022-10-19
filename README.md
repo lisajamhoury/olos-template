@@ -4,6 +4,8 @@
 
 This is a project by [Lisa Jamhoury](https://lisajamhoury.com/) and [Aarón Montoya-Moraga](https://montoyamoraga.io/), funded in 2022 by the Next Web grant from NEW INC and Meta Open Arts.
 
+![olos](./olos.png)
+
 ## Explanation
 
 This project is a template for creating an immersive three.js website that features live video feeds, pose detection, and interactive sound from two people.
@@ -44,7 +46,7 @@ Clone this repository and then install the dependencies with this command.
 npm install
 ```
 
-if it doesn't work, try this alternative command.
+If it doesn't work, try this alternative command.
 
 ```bash
 npm install --legacy-peer-deps
@@ -52,7 +54,7 @@ npm install --legacy-peer-deps
 
 ## Running
 
-For building and deploying the base project, on the console run this command.
+For building and deploying the base project, run this command.
 
 ```bash
 npm start
@@ -81,6 +83,15 @@ ngrok http 8081 # your port here
 ```
 
 Learn more in the [ngrok documentation](https://ngrok.com/docs/secure-tunnels#http-tunnels-local-https)
+
+## Repository Structure
+
+The source code lives on the [src/](./src/) folder.
+
+Inside of it, there are the following folders and files:
+
+- [src/index.html](./src/index.html):
+- [src/sketch.js](./src/sketch.js)
 
 ## Known Issues
 
