@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
 import { padVolumes, padChances } from './toneparams.js';
 import { ToneNotesGenerator } from './tonenotesgenerator.js';

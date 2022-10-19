@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
 import { hihatVolumes, hihatChances } from './toneparams.js';
 

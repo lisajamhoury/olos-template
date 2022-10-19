@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
 import { kickVolumes, kickChances } from './toneparams.js';
 
@@ -54,14 +53,6 @@ class ToneKick extends ToneBaseInstrument {
         );
       }
     }, this.baseChord);
-
-    // this.currentEvent = new Tone.Loop((time) => {
-    //   this.baseSound.triggerAttackRelease(
-    //     'C0',
-    //     Tone.Time('4n').toSeconds(),
-    //     time,
-    //   );
-    // }, '4n');
 
     this.currentEvent.probability = this.chances[newScene];
     this.currentEvent.playbackRate = 1.0;

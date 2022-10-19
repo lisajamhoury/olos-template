@@ -1,12 +1,10 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS, DEMOTONEJS, SENDDATA } from './../constants.js';
-import { ToneBass } from './tonebass.js';
+import { SENDDATA } from './../constants.js';
 import { ToneHihat } from './tonehihat.js';
 import { ToneKick } from './tonekick.js';
 import { TonePad } from './tonepad.js';
 import { ToneMelody } from './tonemelody.js';
 import { globalBPM, scenesBars } from './toneparams.js';
-// import { TonePlayerDemo } from './toneplayerdemo.js';
 
 class ToneMixer {
   constructor(peerConnection) {
@@ -26,33 +24,16 @@ class ToneMixer {
     this.currentScene = -1;
 
     // instances of the instruments
-    this.bass = new ToneBass();
     this.hihat = new ToneHihat();
     this.kick = new ToneKick();
     this.pad = new TonePad();
     this.melody = new ToneMelody();
 
-    // TODO: replace with two players, one for each scene
-    // this.playerDemo1 = new TonePlayerDemo(1);
-    // this.playerDemo2 = new TonePlayerDemo(2);
-    // this.playerDemo = new TonePlayerDemo(0);
-
     // declare reverb for all instruments
     this.reverb = new Tone.Reverb(2).toDestination();
 
     // array of all the instruments
-    if (DEMOTONEJS) {
-      this.instruments = [this.playerDemo];
-    } else {
-      this.instruments = [
-        // this.bass,
-        this.hihat,
-        this.kick,
-        // this.ride,
-        this.pad,
-        this.melody,
-      ];
-    }
+    this.instruments = [this.hihat, this.kick, this.pad, this.melody];
 
     // go through all the instruments and connect them to reverb
     this.instruments.forEach((instrument) => {
@@ -99,37 +80,21 @@ class ToneMixer {
   async handleOpenAudio(key) {
     // toggle on and off with x
     if (key === 'x') {
-      if (DEBUGTONEJS) {
-        console.log('x pressed');
-      }
       await Tone.start();
       Tone.Transport.bpm.rampTo(globalBPM, '1m');
       if (
         Tone.Transport.state === 'paused' ||
         Tone.Transport.state === 'stopped'
       ) {
-        if (DEBUGTONEJS) {
-          console.log('audio is ready');
-        }
         this.goToScene(0);
       } else if (Tone.Transport.state === 'started') {
         Tone.Transport.pause();
-        if (DEBUGTONEJS) {
-          console.log('audio is paused');
-        }
       }
     }
   }
 
   async handleSceneAudio(key) {
     if (['0', '1', '2', '3', '4'].includes(key)) {
-      if (DEBUGTONEJS) {
-        console.log('number pressed');
-        console.log(
-          'currentScene: ' + this.currentScene + 'nextScene: ' + key,
-        );
-      }
-
       // go to the scene only if it's different than the previous one
       if (this.currentScene != key) {
         this.currentScene = key;
@@ -144,12 +109,6 @@ class ToneMixer {
     this.currentBar = this.currentTransportPosition[0];
     this.currentBeats = this.currentTransportPosition[1];
     this.currentSixteenths = this.currentTransportPosition[2];
-    // if (DEBUGTONEJS) {
-    // console.log(
-    // 'current transport: ' + Tone.Transport.position,
-    // Tone.now(),
-    // );
-    // }
   }
 
   updateReverbDecayTime(newReverbTime, rampTime) {
@@ -177,7 +136,6 @@ class ToneMixer {
 
     if (player1.pose[0].hasOwnProperty('keypoints3D')) {
       const keypoints = player1.pose[0].keypoints3D;
-      // console.log(keypoints);
       if (keypoints[0].score > 0.8) {
         // retrieve distance between nose and left elbow
         // nose is keypoints[0], left elbow is keypoints[13]
@@ -227,36 +185,6 @@ class ToneMixer {
       this.kick.updateDelayTime(nextDelayTime);
       this.kick.updateDelayFeedback(nextDelayTime);
     }
-
-    // map to another range
-    // nextDelayTime = nextDelayTime * 1.0 * Tone.Time('4n').toSeconds();
-
-    // this.melody.updateDelayFeedback(nextDelayTime);
-
-    // this.animatePlayer(player1.pose, 0);
-    // this.animatePlayer(player2.pose, 1);
-  }
-
-  animatePlayer(pose, offset) {
-    let keyPointIndex = 0;
-    let xPos = 0;
-    let yPos = 0;
-    let zPos = 0;
-    if (pose[0].hasOwnProperty('keypoints3D')) {
-      const keypoints = pose[0].keypoints3D;
-      if (keypoints[keyPointIndex].score > 0.8) {
-        xPos = keypoints[keyPointIndex].x + offset;
-        yPos = keypoints[keyPointIndex].y * -1;
-        zPos = keypoints[keyPointIndex].z;
-      }
-    }
-    let newDelayFeedback = Math.abs(xPos);
-
-    this.instruments.forEach((instrument) => {
-      if (instrument != null) {
-        // this.instrument.updateDelayFeedback(newDelayFeedback);
-      }
-    });
   }
 }
 
