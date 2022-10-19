@@ -92,7 +92,7 @@ The source code lives on the [src/](./src/) folder, which includes the following
 - [src/sketch.js](./src/sketch.js): main JavaScript file that imports the modules and creates instances of all the needed components.
 - [src/media/](./src/media/): multimedia files for running the project in non-live mode, including video files and JSON files.
 - [src/modules](./src/modules/): JavaScript files with modules used for building the project, including:
-  - [src/modules/audio/](./src/modules/audio/)
+  - [src/modules/audio/](./src/modules/audio/): JavaScript files built with Tone.js. It includes a base class for building instruments (percussion, melody synth, pad synth), a notes generator for building melodies and chords, a parameters file for controlling the instruments, and a mixer for instancing the instruments.
 
 ## Known Issues
 
