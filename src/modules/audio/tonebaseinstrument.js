@@ -1,6 +1,4 @@
-import { getInternalFormatForUnsignedBytesMatrixTexture } from '@tensorflow/tfjs-backend-webgl/dist/gpgpu_util';
 import * as Tone from 'tone';
-import { ToneWithContext } from 'tone/build/esm/core/context/ToneWithContext';
 
 class ToneBaseInstrument {
   constructor() {
@@ -48,13 +46,6 @@ class ToneBaseInstrument {
     });
   }
 
-  mute() {
-    this.volume.volume.rampTo(
-      -Infinity,
-      Tone.Time(this.transitionTime).toSeconds(),
-    );
-  }
-
   updateDelayTime(newDelayTime) {
     this.delay.delayTime.rampTo(
       newDelayTime,
@@ -67,10 +58,6 @@ class ToneBaseInstrument {
       newDelayFeedback,
       Tone.Time(this.transitionTime).toSeconds(),
     );
-  }
-
-  durationToSeconds(timeNote) {
-    return Tone.Time(timeNote).toSeconds();
   }
 }
 
