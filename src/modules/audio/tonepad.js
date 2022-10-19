@@ -1,7 +1,6 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
-import { padVolumes, padChances } from './toneparams.js';
+import { padGain, padChance } from './toneparams.js';
 import { ToneNotesGenerator } from './tonenotesgenerator.js';
 
 class TonePad extends ToneBaseInstrument {
@@ -33,8 +32,8 @@ class TonePad extends ToneBaseInstrument {
     this.updateDelayTime(2.0 * Tone.Time('4n').toSeconds());
     this.updateDelayFeedback(0.4);
 
-    this.volumes = padVolumes;
-    this.chances = padChances;
+    this.gain = padGain;
+    this.chance = padChance;
 
     this.generator = new ToneNotesGenerator();
 
@@ -51,8 +50,8 @@ class TonePad extends ToneBaseInstrument {
     }
   }
 
-  goToScene(newScene) {
-    this.updateVolume(this.volumes[newScene]);
+  init() {
+    this.updateGain(this.gain);
 
     if (this.currentEvent != null) {
       this.currentEvent.dispose();
@@ -73,7 +72,7 @@ class TonePad extends ToneBaseInstrument {
       );
     }, this.baseChord);
 
-    this.currentEvent.probability = this.chances[newScene];
+    this.currentEvent.probability = this.chance;
     this.currentEvent.playbackRate = 1;
     this.currentEvent.loop = true;
     // loopEnd is the length of the loop, as in, how often it loops

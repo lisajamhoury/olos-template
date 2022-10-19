@@ -1,7 +1,6 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
-import { kickVolumes, kickChances } from './toneparams.js';
+import { kickGain, kickChance } from './toneparams.js';
 
 class ToneKick extends ToneBaseInstrument {
   constructor() {
@@ -29,15 +28,15 @@ class ToneKick extends ToneBaseInstrument {
     // update frequency cutoff
     this.updateFilterFrequency(700);
 
-    this.volumes = kickVolumes;
+    this.gain = kickGain;
 
-    this.chances = kickChances;
+    this.chance = kickChance;
 
     this.currentEvent = null;
   }
 
-  goToScene(newScene) {
-    this.updateVolume(this.volumes[newScene]);
+  init() {
+    this.updateGain(this.gain);
 
     // cancel all next scheduled repeats
     if (this.currentEvent != null) {
@@ -55,15 +54,7 @@ class ToneKick extends ToneBaseInstrument {
       }
     }, this.baseChord);
 
-    // this.currentEvent = new Tone.Loop((time) => {
-    //   this.baseSound.triggerAttackRelease(
-    //     'C0',
-    //     Tone.Time('4n').toSeconds(),
-    //     time,
-    //   );
-    // }, '4n');
-
-    this.currentEvent.probability = this.chances[newScene];
+    this.currentEvent.probability = this.chance;
     this.currentEvent.playbackRate = 1.0;
     this.currentEvent.loop = true;
     // loopEnd is the length of the loop, as in, how often it loops

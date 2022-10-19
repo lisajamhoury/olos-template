@@ -1,7 +1,6 @@
 import * as Tone from 'tone';
-import { DEBUGTONEJS } from './../constants.js';
 import { ToneBaseInstrument } from './tonebaseinstrument.js';
-import { hihatVolumes, hihatChances } from './toneparams.js';
+import { hihatGain, hihatChance } from './toneparams.js';
 
 class ToneHihat extends ToneBaseInstrument {
   constructor() {
@@ -26,20 +25,21 @@ class ToneHihat extends ToneBaseInstrument {
     // update filter
     this.filter.type = 'bandpass';
     this.filter.Q.value = 5.0;
+
     // update frequency cutoff
     this.updateFilterFrequency(8000);
 
-    this.volumes = hihatVolumes;
+    this.gain = hihatGain;
 
-    this.chances = hihatChances;
+    this.chance = hihatChance;
 
     this.currentEvent = null;
 
     this.baseChord = null;
   }
 
-  goToScene(newScene) {
-    this.updateVolume(this.volumes[newScene]);
+  init() {
+    this.updateGain(this.gain);
 
     // cancel all next scheduled repeats
     if (this.currentEvent != null) {
@@ -58,7 +58,7 @@ class ToneHihat extends ToneBaseInstrument {
       }
     }, this.baseChord);
 
-    // this.currentEvent.probability = this.chances[newScene];
+    this.currentEvent.probability = this.chances;
     this.currentEvent.playbackRate = 1.0;
     this.currentEvent.loop = true;
     // loopEnd is the length of the loop, as in, how often it loops
